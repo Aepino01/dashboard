@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import './App.css'
 import { Grid, Typography } from '@mui/material';
 import HeaderUI from './components/HeaderUI';
@@ -5,9 +6,13 @@ import AlertUI from './components/AlertUI';
 import SelectorUI from './components/SelectorUI';
 import IndicatorUI from './components/IndicatorUI';
 import DataFetcher from './functions/DataFetcher';
+import TableUI from './components/TableUI';
+import ChartUI from './components/ChartUI';
+
 
 function App() {
-   const { data, loading, error } = DataFetcher();
+   const [cityInput, setCityInput] = useState<string>('Guayaquil');
+   const { data, loading, error } = DataFetcher({ city: cityInput });
 
    return (
       <Grid container spacing={5} justifyContent="center" alignItems="center">
@@ -29,7 +34,10 @@ function App() {
 
          {/* Selector */}
          <Grid size={{ xs: 12, md: 3 }}>
-            <SelectorUI />
+            <SelectorUI
+               cityInput={cityInput}
+               setCityInput={setCityInput} 
+            />
          </Grid>
 
          {/* Indicadores */}
@@ -77,22 +85,23 @@ function App() {
          </Grid>
 
          {/* Gráfico */}
-         <Grid
-            sx={{
-               display: { xs: 'none', md: 'block' }
-            }}
-         >
-            Elemento: Gráfico
+         <Grid size={{ xs: 6, md: 6 }} sx={{ display: { xs: "none", md: "block" } }}>
+              <ChartUI 
+                  arrLabels={data?.hourly.time || []}
+                  arrValues1={data?.hourly.temperature_2m || []}
+                  arrValues2={data?.hourly.wind_speed_10m || []}
+               />
          </Grid>
 
+
          {/* Tabla */}
-         <Grid
-            sx={{
-               display: { xs: 'none', md: 'block' }
-            }}
-         >
-            Elemento: Tabla
-         </Grid>
+           <Grid size={{ xs: 6, md: 6 }} sx={{ display: { xs: "none", md: "block" } }}>
+              <TableUI 
+                  arrLabels={data?.hourly.time || []}
+                  arrValues1={data?.hourly.temperature_2m || []}
+                  arrValues2={data?.hourly.wind_speed_10m || []}
+              />
+           </Grid>
 
          {/* Información adicional */}
          <Grid>Elemento: Información adicional</Grid>

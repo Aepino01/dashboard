@@ -5,9 +5,12 @@ import Select from '@mui/material/Select';
 import type { SelectChangeEvent } from '@mui/material/Select'; // Importa solo el tipo
 import MenuItem from '@mui/material/MenuItem';
 
-export default function SelectorUI() {
-   const [cityInput, setCityInput] = useState<string>('');
+interface SelectorUIProps {
+   cityInput: string;
+   setCityInput: (value: string) => void;
+}
 
+export default function SelectorUI({cityInput, setCityInput}: SelectorUIProps) {
    const handleChange = (event: SelectChangeEvent<string>) => {
       setCityInput(event.target.value);
    };
@@ -28,10 +31,10 @@ export default function SelectorUI() {
             <MenuItem disabled value="">
                <em>Seleccione una ciudad</em>
             </MenuItem>
-            <MenuItem value={"guayaquil"}>Guayaquil</MenuItem>
-            <MenuItem value={"quito"}>Quito</MenuItem>
-            <MenuItem value={"manta"}>Manta</MenuItem>
-            <MenuItem value={"cuenca"}>Cuenca</MenuItem>
+            <MenuItem value={"Guayaquil"}>Guayaquil</MenuItem>
+            <MenuItem value={"Quito"}>Quito</MenuItem>
+            <MenuItem value={"Manta"}>Manta</MenuItem>
+            <MenuItem value={"Cuenca"}>Cuenca</MenuItem>
          </Select>
          {cityInput && (
             <p>
