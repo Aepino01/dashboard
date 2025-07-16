@@ -8,6 +8,7 @@ import IndicatorUI from './components/IndicatorUI';
 import DataFetcher from './functions/DataFetcher';
 import TableUI from './components/TableUI';
 import ChartUI from './components/ChartUI';
+import CohereAssistant from './components/CohereAssistant';
 
 
 function App() {
@@ -104,7 +105,10 @@ function App() {
            </Grid>
 
          {/* Información adicional */}
-         <Grid>Elemento: Información adicional</Grid>
+         <Grid>
+           Elemento: Información adicional
+           {data && <CohereAssistant weatherData={data.current} />}
+         </Grid>
 
       </Grid>
    );
