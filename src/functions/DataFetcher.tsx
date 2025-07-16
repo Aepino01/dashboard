@@ -36,7 +36,7 @@ const DataFetcher = ({city}:Props) => {
     }
 
     const now = Date.now();
-    const isCacheValid = cacheData && (now - cacheData.timestamp < CACHE_MINUTES * 60 * 1000;
+    const isCacheValid = cacheData && (now - cacheData.timestamp < CACHE_MINUTES * 60 * 1000);
     
     if (isCacheValid) {
       setData(cacheData!.data);
