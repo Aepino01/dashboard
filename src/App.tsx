@@ -20,7 +20,7 @@ function App() {
 
          {/* Encabezado */}
          <Grid size={{ xs: 12, md: 12 }}>
-            <HeaderUI description="Título del dashboard" />
+            <HeaderUI description="Dashboard Meteorológico" />
          </Grid>
 
          {/* Alertas */}
